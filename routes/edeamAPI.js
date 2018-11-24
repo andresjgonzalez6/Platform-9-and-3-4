@@ -8,8 +8,12 @@ let FoodDB_APP_ID = process.env.FoodDB_APP_ID
 let FoodDB_APP_KEY = process.env.FoodDB_APP_KEY
 let query;
 let goodStuff = {
-    recipeSearch: function () {
-        let url = "https://api.edamam.com/search?q="+query+"&app_id=${"+Recipe_APP_ID+"}&app_key=${"+Recipe_APP_KEY+"}"
+    recipeSearch: function (query) {
+        let recipeURL = "https://api.edamam.com/search?q="+query+"&app_id=${"+Recipe_APP_ID+"}&app_key=${"+Recipe_APP_KEY+"}"
+        $.ajax({
+            url: recipeURL,
+            method: "GET"
+        }).then(function (res) {})
     },
     nutritionSearch: function () {},
 
