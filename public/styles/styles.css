@@ -15,10 +15,21 @@ html {
   box-shadow: 0 .5em 1em rgba(51, 51, 51, 0.3);
 }
 
+#latest-box {
+  background: rgba(255, 255, 255, 0.788);
+  padding: 2.5em;
+  border-radius: 0.5em;
+  box-shadow: 0 .5em 1em rgba(51, 51, 51, 0.3);
+}
+
 #search-input{
   margin: 0 1em;
 }
 
 #search-title{
   margin-bottom: 2em;
+}
+
+.button.is-primary {
+  background-color: #EAA700 !important;
 }
