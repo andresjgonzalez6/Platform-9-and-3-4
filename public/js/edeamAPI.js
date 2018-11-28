@@ -29,7 +29,7 @@ let goodStuff = {
 
 $('#search-button').on('click', function(event) {
     event.preventDefault();
-    let query = $("#serach-input").val();
+    let query = $("#search-input").val();
     goodStuff.recipeSearch(query);
     console.log(query);
     
