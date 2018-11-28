@@ -14,23 +14,42 @@ let goodStuff = {
         })
             .then(function (res) {
                 for (let i = 0; i < res.hits.length; i++) {
-                console.log(res.hits[i].recipe.image)
+                    images = res.hits[i].recipe.image
+                    name = res.hits[i].recipe.label
+                    calories = res.hits[i].recipe.calories
+                    for (let j = 0; j < res.hits[i].recipe.ingredientLines.length; j++) {
+                        ingredients = res.hits[i].recipe.ingredientLines[j]
+                    }
+                    for (let k = 0; k < res.hits[i].recipe.healthLabels.length; k++) {
+                        healthLabels = res.hits[i].recipe.healthLabels
+                    }
                 }
                 console.log(res);
-                
             });
     },
-    nutritionSearch: function (query) { },
+    nutritionSearch: function (query) {
+        let nutURL = "https://api.edamam.com/api/nutrition-data?app_id=" + Nutrition_APP_ID + "&app_key=" + Nutrition_APP_KEY + "&ingr=" + query;
+        $.ajax({
+            url: nutURL,
+            method: "GET"
+        })
+            .then(function (res) { })
+    },
 
     foodDBAPI: function (query) {
-        let 
+        let foodURL = "https://api.edamam.com/api/food-database/parser?ingr=" + query + "&app_id=" + FoodDB_APP_ID + "&app_key=" + FoodDB_APP_KEY;
+        $.ajax({
+            url: foodURL,
+            method: "GET"
+        })
+            .then(function (res) { })
     }
 }
 
-$('#search-button').on('click', function(event) {
+$('#search-button').on('click', function (event) {
     event.preventDefault();
     let query = $("#search-input").val();
     goodStuff.recipeSearch(query);
     console.log(query);
-    
+
 });
