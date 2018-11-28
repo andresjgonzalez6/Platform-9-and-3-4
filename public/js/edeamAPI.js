@@ -33,7 +33,7 @@ let goodStuff = {
             url: nutURL,
             method: "GET"
         })
-            .then(function (res) { })
+            .then(function (res) {console.log(res);})
     },
 
     foodDBAPI: function (query) {
@@ -42,7 +42,7 @@ let goodStuff = {
             url: foodURL,
             method: "GET"
         })
-            .then(function (res) { })
+            .then(function (res) {console.log(res);})
     }
 }
 
@@ -50,6 +50,8 @@ $('#search-button').on('click', function (event) {
     event.preventDefault();
     let query = $("#search-input").val();
     goodStuff.recipeSearch(query);
+    goodStuff.nutritionSearch(query);
+    goodStuff.foodDBAPI(query);
     console.log(query);
 
 });
