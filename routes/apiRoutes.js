@@ -1,5 +1,5 @@
 var db = require("../models");
-let edemam = require("./edeamAPI");
+let edemam = require("../public/js/edeamAPI");
 
 module.exports = function(app) {
   // Get all examples
