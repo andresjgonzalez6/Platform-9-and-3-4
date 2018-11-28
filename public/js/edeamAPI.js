@@ -1,5 +1,4 @@
 require('dotenv').config();
-let $ = require("jquery");
 
 let recipe_APP_ID = process.env.Recipe_APP_ID;
 let recipe_APP_KEY = process.env.Recipe_APP_KEY;
