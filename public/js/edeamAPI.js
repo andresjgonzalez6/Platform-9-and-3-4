@@ -1,15 +1,3 @@
-// var mysql = require('mysql');
-
-// var con = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "password",
-//     database: "edemamDB"
-// });
-
-
-
-
 let Recipe_APP_ID = "055b5671";
 let Recipe_APP_KEY = "1502e188414b9f8a78b54045f49fe008";
 let Nutrition_APP_ID = "cd84f084";
@@ -26,23 +14,44 @@ let goodStuff = {
         })
             .then(function (res) {
                 console.log(res);
-                for (let i = 0; i < res.hits.length; i++) {
-                    let imageUrl = res.hits[i].recipe.image;
-                    console.log(imageUrl);
-                    let recipeName = res.hits[i].recipe.label;
-                    console.log(recipeName);
-                    for (let i = 0; i < res.hits[i].recipe.healthLabels.length; i++) {
-                        let healthDietLabels = res.hits[i].recipe.healthLabels[i];
-                        console.log(healthDietLabels);
-                    }
+                $("#results-section").empty();
 
-                    for (let i = 0; i < res.hits[i].recipe.ingredientLines.length; i++) {
-                        let ingrLines = res.hits[i].recipe.ingredientLines[i];
-                        console.log(ingrLines);
+                for (let i = 0; i < res.hits.length; i++) {
+                    let recipeDiv = $("<div>");
+                    recipeDiv.addClass("column is-4");
+                    recipeDiv.attr("id", "recipeResult-" + i);
+                    let recipeName = res.hits[i].recipe.label;
+                    let imageUrl = res.hits[i].recipe.image;
+                    let recipeImg = $("<img>");
+
+                    let ul = $("<ul>");
+
+                    for (let index = 0; index < res.hits[i].recipe.ingredientLines.length; index++) {
+                        let ingrLines = res.hits[i].recipe.ingredientLines[index];
+                        let li = $("<li>");
+                        ul.append(li);
+                        li.text(ingrLines);
                     }
 
                     let shareAsLink = res.hits[i].recipe.shareAs;
-                    console.log(shareAsLink);
+                    let imageLink = $("<a>");
+                    imageLink.attr("href", shareAsLink);
+                    imageLink.attr("target", "_blank");
+                    recipeDiv.append(imageLink);
+                    recipeImg.attr("src", imageUrl);
+                    imageLink.append(recipeImg);
+
+
+                    let labelH3 = $("<h3>");
+                    labelH3.addClass("is-size-3");
+                    let shareLink = $("<a>");
+                    shareLink.attr("href", shareAsLink);
+                    shareLink.attr("target", "_blank");
+                    recipeDiv.append(shareLink);
+                    shareLink.append(labelH3.text(recipeName));
+                    recipeDiv.append(ul);
+
+                    $("#results-section").append(recipeDiv);
                 }
                 console.log(res);
             });
