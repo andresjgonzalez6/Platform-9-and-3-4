@@ -1,10 +1,30 @@
 var db = require("../models");
+var path = require("path");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-  // Load index page
+
   app.get("/", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/mainPage");
+    }
+    res.render("signup");
+  });
+
+  app.get("/login", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/mainPage");
+    }
+    res.render("login");
+  });
+
+ 
+  // Load index page
+  app.get("/mainPage", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
+      res.render("mainPage", {
         msg: "Welcome!",
         examples: dbExamples
       });
@@ -25,3 +45,5 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+
