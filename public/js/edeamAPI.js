@@ -31,17 +31,18 @@ let goodStuff = {
                     console.log(imageUrl);
                     let recipeName = res.hits[i].recipe.label;
                     console.log(recipeName);
-                    for (let i = 0; i < res.hits[i].healthLabels.length; i++) {
-                        let healthDietLabels = res.hits[i].healthLabels[i];
+                    for (let i = 0; i < res.hits[i].recipe.healthLabels.length; i++) {
+                        let healthDietLabels = res.hits[i].recipe.healthLabels[i];
                         console.log(healthDietLabels);
                     }
 
                     for (let i = 0; i < res.hits[i].recipe.ingredientLines.length; i++) {
-                        let ingredientLines = res.hits[i].recipe.ingredientLines[i];
-                        console.log(ingredientLines);
+                        let ingrLines = res.hits[i].recipe.ingredientLines[i];
+                        console.log(ingrLines);
                     }
 
-                    // let shareAsLink = res.hits[i].
+                    let shareAsLink = res.hits[i].recipe.shareAs;
+                    console.log(shareAsLink);
                 }
                 console.log(res);
             });
